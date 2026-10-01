@@ -1,0 +1,23 @@
+tagline: >-
+  A journalist's instinct for the truth. A broker's command of the deal.
+intro: >-
+  [Two or three sentences introducing Martina — who she is, where she works,
+  and who she works with.]
+portraitAlt: Portrait of Martina Dechevska
+statement: >-
+  Every great story and every great property comes down to the same thing —
+  knowing which questions to ask.
+journalismTitle: Journalism
+journalismText: >-
+  Selected writing and reporting, and the archive of Flowers in a
+  Gun.
+realEstateTitle: Real Estate
+realEstateText: >-
+  Discreet, informed representation across [areas served].
+highlights:
+  - value: '[00]'
+    label: '[Years in journalism]'
+  - value: '[00]'
+    label: '[Years in real estate]'
+  - value: '[00]'
+    label: '[Verifiable figure]'

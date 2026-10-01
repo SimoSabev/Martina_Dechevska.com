@@ -1,0 +1,28 @@
+heading: Real estate, handled with discretion.
+intro: >-
+  [Introduction to Martina's real estate practice — the clients she
+  represents and how she works.]
+services:
+  - title: '[Service one]'
+    description: '[One or two sentences describing the service.]'
+  - title: '[Service two]'
+    description: '[One or two sentences describing the service.]'
+  - title: '[Service three]'
+    description: '[One or two sentences describing the service.]'
+areas:
+  - '[Area one]'
+  - '[Area two]'
+  - '[Area three]'
+brokerage: '[Brokerage name]'
+brokerageAddress: '[Brokerage office address]'
+brokeragePhone: '[Brokerage office phone]'
+licenseType: '[License type, exactly as on the license]'
+licenseState: '[State]'
+licenseNumber: '[License number]'
+showEqualHousing: true
+disclosures: >-
+  [State-required disclosures — exact wording to be confirmed with the
+  brokerage.]
+ctaTitle: Considering a move?
+ctaText: >-
+  A private conversation is the best place to start.

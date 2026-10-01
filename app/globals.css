@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens — "Ivory & Ink".
+ * Warm ivory paper, near-black ink, one accent: a deep olive that nods to
+ * the lime green of flowersinagun.com without reading as a music blog.
+ * The bright lime is reserved for small details on dark backgrounds.
+ * All text pairings meet WCAG AA (see README for ratios).
+ */
+@theme {
+  --color-ivory: #f6f3ec;
+  --color-paper: #fbfaf6;
+  --color-sand: #e4ded1;
+  --color-stone: #5e5a51;
+  --color-ink: #141412;
+  --color-ink-soft: #1e1e1b;
+  --color-mist: #a8a398;
+  --color-olive: #56631a;
+  --color-lime: #c5d24a;
+
+  --font-serif: var(--font-cormorant), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(3.25rem, 9vw, 8.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.02em;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+    font-feature-settings: "kern", "liga";
+  }
+
+  ::selection {
+    @apply bg-ink text-lime;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-lime);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Small uppercase label with an accent hairline. */
+  .eyebrow {
+    @apply inline-flex items-center gap-4 font-sans text-[0.7rem] font-semibold tracking-[0.28em] text-stone uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-10 bg-olive;
+  }
+  .on-dark .eyebrow {
+    @apply text-mist;
+  }
+  .on-dark .eyebrow::before {
+    @apply bg-lime;
+  }
+
+  .container-site {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Long-form text (biography). */
+  .prose-bio {
+    @apply space-y-6 text-[1.075rem] leading-[1.8] text-ink/85;
+  }
+  .prose-bio > p:first-child::first-letter {
+    @apply float-left mt-2 mr-3 font-serif text-[4.5rem] leading-[0.8] text-olive;
+  }
+  .prose-bio a {
+    @apply text-olive underline decoration-1 underline-offset-4;
+  }
+  .prose-bio h2,
+  .prose-bio h3 {
+    @apply pt-6 font-serif text-3xl leading-tight text-ink;
+  }
+  .prose-bio strong {
+    @apply font-semibold text-ink;
+  }
+
+  /* Visually flags content that still needs to be supplied. */
+  .is-placeholder {
+    @apply decoration-olive/50 underline decoration-dotted decoration-1 underline-offset-4;
+  }
 }
