@@ -88,9 +88,12 @@
 
   /* Long-form text (biography). */
   .prose-bio {
-    @apply space-y-6 text-[1.075rem] leading-[1.8] text-ink/85;
+    @apply text-[1.075rem] leading-[1.8] text-ink/85;
   }
-  .prose-bio > p:first-child::first-letter {
+  .prose-bio :where(p, h2, h3, ul, ol) + :where(p, h2, h3, ul, ol) {
+    @apply mt-6;
+  }
+  .prose-bio p:first-of-type::first-letter {
     @apply float-left mt-2 mr-3 font-serif text-[4.5rem] leading-[0.8] text-olive;
   }
   .prose-bio a {

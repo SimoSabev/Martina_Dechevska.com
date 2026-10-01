@@ -18,7 +18,7 @@ export async function Footer() {
   ].filter((s): s is { label: string; href: string } => Boolean(s.href));
 
   return (
-    <footer className="on-dark bg-ink text-ivory">
+    <footer className="on-dark border-t border-ivory/10 bg-ink text-ivory">
       <div className="container-site grid gap-14 py-20 md:grid-cols-12 md:py-24">
         <div className="md:col-span-5">
           <p className="font-serif text-4xl leading-tight sm:text-5xl">{settings.name}</p>
