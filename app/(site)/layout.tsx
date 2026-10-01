@@ -2,7 +2,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { getSettings } from "@/lib/content";
 
-export default async function SiteLayout({ children }: LayoutProps<"/">) {
+export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSettings();
   return (
     <div className="flex min-h-dvh flex-col">

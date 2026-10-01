@@ -11,7 +11,7 @@ export function Header({ name }: { name: string }) {
         Skip to content
       </a>
       <div className="container-site flex h-20 items-center justify-between md:h-24">
-        <Link href="/" className="group flex items-center gap-3" aria-label={`${name} — home`}>
+        <Link href="/" className="group flex items-center gap-3">
           <Monogram className="h-9 w-9 text-ink transition-colors duration-500 group-hover:text-olive" />
           <span className="font-serif text-[1.35rem] leading-none tracking-[0.02em] sm:text-2xl">
             {name}

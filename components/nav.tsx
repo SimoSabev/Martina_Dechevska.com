@@ -51,7 +51,7 @@ export function Nav() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="absolute inset-x-0 top-full z-30 border-y border-sand bg-ivory md:hidden"
+        className="absolute inset-x-0 top-full z-30 h-[calc(100dvh-5rem)] overflow-y-auto border-t border-sand bg-ivory md:hidden"
       >
         <ul className="container-site flex flex-col py-6">
           {navigation.map((item) => (

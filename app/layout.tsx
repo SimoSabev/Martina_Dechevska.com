@@ -8,16 +8,19 @@ import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  // One weight, two styles: keeps the font payload small for mobile LCP.
+  subsets: ["latin"],
+  weight: "500",
   style: ["normal", "italic"],
   display: "swap",
 });
 
+// Body text: "optional" avoids a late re-render (and a slow LCP) on poor
+// connections; those visitors simply keep the size-matched system fallback.
 const manrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
+  subsets: ["latin"],
+  display: "optional",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
