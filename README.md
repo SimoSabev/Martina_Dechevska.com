@@ -46,7 +46,8 @@ Anything shown as `[in brackets]` on the site is a placeholder still waiting for
 | Site settings & contact details | Name, role line, email, phone, city, LinkedIn, Instagram, archive URL, default search description |
 | Home page | Tagline, intro, portrait, statement, the two paths, highlight figures |
 | About page | Heading, opening paragraph, photo, full biography (rich text) |
-| Journalism page + Articles & publications | Intro, archive block, one entry per article (title, outlet, date, link, summary, featured) |
+| Journalism page + Articles & publications | Intro, archive block, video section heading, one entry per article (title, outlet, date, link, summary, featured) |
+| Video reports | One entry per report: title, outlet, when, language, duration, video file *or* link, cover image, summary, copyright credit, order |
 | Real estate page | Services, areas, brokerage, license, Equal Housing toggle, disclosures, call to action |
 | Contact page | Heading and intro |
 
@@ -96,6 +97,7 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - **SEO:** per-page metadata and canonicals, generated Open Graph image (`app/opengraph-image.tsx`), `sitemap.xml`, `robots.txt` (editor excluded), JSON-LD `Person` (Home, About) and `RealEstateAgent` (Real Estate).
 - **Performance:** every page is statically generated; CSS is inlined (`experimental.inlineCss`), one serif weight is loaded, the body font uses `display: optional`. Local Lighthouse (production build): desktop 100/100/100/100 on all pages; mobile performance 93–98, accessibility/best practices/SEO 100. Vercel's CDN with Brotli is typically faster than the local test server.
 - **Accessibility:** semantic landmarks, skip link, visible focus rings, AA contrast on every text pairing, alt text fields for every image, reduced-motion respected.
+- **Video:** reports are served from `public/videos/` through Vercel's CDN, behind a click-to-play cover image, so the Journalism page downloads no video until a visitor presses play. Keep each file small (H.264 MP4, ≤720p, roughly 20 MB max): every upload is committed to Git and stays in the repository's history for good. To compress a file before uploading: `ffmpeg -i in.mp4 -c:v libx264 -crf 26 -preset slow -vf "scale='min(1280,iw)':-2" -c:a aac -b:a 96k -movflags +faststart out.mp4`. For long pieces or a large library, link to a hosted copy instead (the "link to the published video" field) rather than uploading the file. The grid shows the first video large, so it fills evenly with 2, 5 or 8 entries.
 - **Contact form:** zero-service `mailto:` form that opens the visitor's email app with the message pre-filled. To receive messages directly instead, add a server action + Resend (free tier: 3,000 emails/month) — the form markup stays the same.
 - **Adding a language later:** content already lives under `content/<locale>/` and all loaders take a locale (`lib/i18n.ts`, `lib/content.ts`). Steps: add the locale to `lib/i18n.ts`, register its schema in `keystatic.config.ts` (see comment there), copy `content/en/` to the new folder, move `app/(site)/*` under `app/[locale]/`, and add `alternates.languages` to metadata. If the language is Bulgarian, add the `cyrillic` subset to both fonts in `app/layout.tsx`.
 
@@ -117,6 +119,12 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] Email, phone, city/state
 - [ ] LinkedIn and Instagram URLs
 - [ ] Highlight figures for the home page (only verifiable numbers — or delete the section)
+
+**Video reports (seeded from the "Journalism Work" Drive folder):**
+
+- [ ] Confirm permission to show the ZoomIn.TV and bTV footage on a personal site. Both outlets own the copyright ("© ZoomIn.TV 2014 All Rights Reserved" is on the end cards), so each entry is credited. If either outlet objects, swap in a link to the published copy.
+- [ ] Check the inferred details: the bTV report is dated March 2014 from the event it covers (the East Harlem explosion), and the English title is a translation of the on-screen headline; the Ashley Graham piece is dated 2015 from the show it covers (Addition Elle SS16 at NYFW). Other years come from the end cards.
+- [ ] Choose more reports from the folder (it holds ~60 ZoomIn.TV pieces and more bTV recordings; most are over the 10 MB the Drive connector could download). Pieces left out on purpose because of their headlines: the Milo Yiannopoulos clip, Kevin Spacey at Tribeca, "Gal Gadot's message to her boob trolls", "Keira Knightley talks about being called a sh*t actress".
 
 **To confirm (compliance):**
 

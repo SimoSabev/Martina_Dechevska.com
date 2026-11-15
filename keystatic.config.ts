@@ -122,6 +122,8 @@ function localeSchema(locale: Locale) {
         archiveTitle: fields.text({ label: "Archive block — title" }),
         archiveText: fields.text({ label: "Archive block — text", multiline: true }),
         archiveYears: fields.text({ label: "Archive block — years", defaultValue: "2013 – 2016" }),
+        videosTitle: fields.text({ label: "Video section — title", defaultValue: "Reporting on camera." }),
+        videosIntro: fields.text({ label: "Video section — introduction", multiline: true }),
       },
     }),
 
@@ -197,6 +199,45 @@ function localeSchema(locale: Locale) {
         }),
       },
     }),
+
+    videos: collection({
+      label: label("Video reports", locale),
+      path: `${root}/videos/*`,
+      slugField: "title",
+      format: { data: "yaml" },
+      columns: ["outlet", "when"],
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        outlet: fields.text({ label: "Outlet / broadcaster", description: "e.g. 'bTV' or 'ZoomIn.TV'." }),
+        when: fields.text({ label: "When", description: "As precise as you know it, e.g. 'March 2014' or '2014'." }),
+        language: fields.text({
+          label: "Language note (optional)",
+          description: "Only if the report is not in English, e.g. 'In Bulgarian'.",
+        }),
+        duration: fields.text({ label: "Duration (optional)", description: "e.g. '1:07'." }),
+        video: fields.file({
+          label: "Video file",
+          description: "MP4 (H.264). Keep it under ~20 MB: compress long or high-resolution files before uploading.",
+          directory: "public/videos",
+          publicPath: "/videos/",
+        }),
+        externalUrl: fields.url({
+          label: "Or: link to the published video",
+          description: "Used when no file is uploaded, e.g. the report on the broadcaster's website or YouTube.",
+        }),
+        poster: imageField("Cover image", "videos", "A still from the report, 16:9."),
+        summary: fields.text({ label: "Short summary (optional)", multiline: true }),
+        credit: fields.text({
+          label: "Copyright credit",
+          description: "Who owns the footage, e.g. '© ZoomIn.TV'. Shown under the video.",
+        }),
+        order: fields.integer({
+          label: "Order",
+          description: "Lower numbers are shown first. The first video is shown large.",
+          defaultValue: 10,
+        }),
+      },
+    }),
   };
 
   return { singletons, collections };
@@ -217,7 +258,7 @@ export default config({
     brand: { name: "Martina Dechevska" },
     navigation: {
       Pages: ["home", "about", "journalism", "realEstate", "contact"],
-      Journalism: ["articles"],
+      Journalism: ["articles", "videos"],
       Settings: ["settings"],
     },
   },

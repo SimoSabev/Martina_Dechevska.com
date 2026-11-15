@@ -63,5 +63,14 @@ export const getArticles = cache(async (locale: Locale = defaultLocale) => {
     });
 });
 
+export const getVideos = cache(async (locale: Locale = defaultLocale) => {
+  const entries = await readerFor(locale).collections.videos.all();
+  return entries
+    .map(({ slug, entry }) => ({ slug, ...entry }))
+    .filter((video) => video.video || video.externalUrl)
+    .sort((a, b) => (a.order ?? 10) - (b.order ?? 10) || a.title.localeCompare(b.title));
+});
+
 export type Settings = Awaited<ReturnType<typeof getSettings>>;
 export type Article = Awaited<ReturnType<typeof getArticles>>[number];
+export type Video = Awaited<ReturnType<typeof getVideos>>[number];
