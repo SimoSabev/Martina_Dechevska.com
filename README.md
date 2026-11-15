@@ -132,6 +132,14 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] State-required advertising disclosures — exact wording from the brokerage / state commission (e.g. whether the brokerage name and phone must appear on every page, which the footer already supports)
 - [ ] Whether her state requires a specific consumer notice/link (e.g. Texas IABS, New York Standard Operating Procedures and Fair Housing Notice)
 
+**Biography drafts from public sources (need Martina's approval):**
+
+The About lede, biography paragraphs one and two, and the Journalism intro are drafted from her public author profile and press coverage: born in Plovdiv, lives in New York, US correspondent for bTV News, wrote for VICE, Maxim Bulgaria, Dnevnik and BNT's BuntART. ZoomIn.TV comes from the footage itself. No years are stated because none could be verified.
+
+- [ ] Check the outlet names and roles (e.g. whether it was VICE Bulgaria, and the exact title at bTV)
+- [ ] Fill in when she moved to New York (still in brackets in paragraph one)
+- [ ] Decide whether to mention her novel *С@мот@* (2015), which got wide press coverage in Bulgaria. It is left out of the drafts.
+
 **Drafts written for approval (marketing copy, no factual claims):**
 
 - [ ] Tagline: "A journalist's instinct for the truth. A broker's command of the deal."
