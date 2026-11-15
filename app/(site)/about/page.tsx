@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { ArrowLink } from "@/components/arrow-link";
 import { JsonLd } from "@/components/json-ld";
+import { ImageReveal, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHeader } from "@/components/page-header";
 import { Portrait } from "@/components/portrait";
 import { T } from "@/components/text";
@@ -35,17 +36,17 @@ export default async function AboutPage() {
         </div>
 
         <div className="md:col-span-7 md:col-start-6 lg:col-span-6 lg:col-start-7">
-          <p className="font-serif text-[1.75rem] leading-snug text-ink sm:text-[2rem]">
+          <Reveal as="p" immediate delay={0.5} className="font-serif text-[1.75rem] leading-snug text-ink sm:text-[2rem]">
             <T>{about.lede}</T>
-          </p>
-          <div className="prose-bio mt-12 border-t border-sand pt-12">
+          </Reveal>
+          <Reveal delay={0.2} className="prose-bio mt-12 border-t border-sand pt-12">
             {Markdoc.renderers.react(about.body, React)}
-          </div>
-          <div className="mt-16 flex flex-col gap-6 border-t border-sand pt-10 sm:flex-row sm:flex-wrap sm:gap-x-10">
+          </Reveal>
+          <Reveal className="mt-16 flex flex-col gap-6 border-t border-sand pt-10 sm:flex-row sm:flex-wrap sm:gap-x-10">
             <ArrowLink href="/journalism">Journalism</ArrowLink>
             <ArrowLink href="/literature">Literature</ArrowLink>
             <ArrowLink href="/real-estate">Real Estate</ArrowLink>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -55,26 +56,28 @@ export default async function AboutPage() {
             <h2 id="gallery-heading" className="eyebrow">
               Photos
             </h2>
-            <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            <Stagger as="ul" className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3" stagger={0.18}>
               {about.gallery
                 .filter((photo) => photo.image)
                 .map((photo, i) => (
-                  <li key={i}>
+                  <StaggerItem as="li" key={i}>
                     <figure>
                       <div className="relative aspect-[2/3] overflow-hidden bg-ink">
-                        <Image
-                          src={photo.image!}
-                          alt={photo.alt || settings.name}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                          className="object-cover"
-                        />
+                        <ImageReveal delay={i * 0.15}>
+                          <Image
+                            src={photo.image!}
+                            alt={photo.alt || settings.name}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover"
+                          />
+                        </ImageReveal>
                       </div>
                       {photo.credit && <figcaption className="mt-3 text-xs text-stone">Photo: {photo.credit}</figcaption>}
                     </figure>
-                  </li>
+                  </StaggerItem>
                 ))}
-            </ul>
+            </Stagger>
           </div>
         </section>
       )}

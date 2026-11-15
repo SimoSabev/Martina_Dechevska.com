@@ -49,7 +49,7 @@ export function VideoCard({ video, large = false }: Props) {
                 alt=""
                 fill
                 sizes={sizes}
-                className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+                className="object-cover transition-transform duration-1000 ease-out-soft group-hover:scale-[1.03]"
               />
             )}
             <span className="absolute bottom-4 left-4 flex items-center gap-3 text-[0.7rem] font-semibold tracking-[0.22em] text-ivory uppercase">

@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { Reveal } from "@/components/motion";
 import { PageHeader } from "@/components/page-header";
 import { T } from "@/components/text";
 import { getContact, getRealEstate, getSettings } from "@/lib/content";
@@ -27,7 +28,7 @@ export default async function ContactPage() {
       <PageHeader eyebrow="Contact" heading={page.heading} intro={page.intro} />
 
       <section className="container-site grid gap-20 pb-24 md:grid-cols-12 md:gap-10 md:pb-32">
-        <div className="space-y-10 md:col-span-4">
+        <Reveal delay={0.3} className="space-y-10 md:col-span-4">
           <div>
             <h2 className="eyebrow">Email</h2>
             <p className="mt-4 font-serif text-2xl break-words">
@@ -92,12 +93,12 @@ export default async function ContactPage() {
               ))}
             </ul>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="md:col-span-7 md:col-start-6">
+        <Reveal delay={0.45} className="md:col-span-7 md:col-start-6">
           <h2 className="sr-only">Send a message</h2>
           <ContactForm email={email} />
-        </div>
+        </Reveal>
       </section>
     </>
   );

@@ -1,3 +1,4 @@
+import { MaskReveal, Reveal } from "./motion";
 import { T } from "./text";
 
 type Props = { eyebrow: string; heading: string; intro?: string | null; index?: string };
@@ -6,18 +7,20 @@ export function PageHeader({ eyebrow, heading, intro, index }: Props) {
   return (
     <header className="container-site grid gap-10 pt-16 pb-16 md:grid-cols-12 md:pt-24 md:pb-24">
       <div className="md:col-span-8">
-        <p className="eyebrow">
+        <Reveal as="p" className="eyebrow" immediate delay={0.1} y={12}>
           {index && <span className="font-serif text-sm tracking-normal text-olive normal-case italic">{index}</span>}
           {eyebrow}
-        </p>
+        </Reveal>
         <h1 className="mt-8 font-serif text-[clamp(3rem,7.5vw,6.5rem)] leading-[0.95] font-medium tracking-[-0.015em]">
-          <T>{heading}</T>
+          <MaskReveal immediate delay={0.2}>
+            <T>{heading}</T>
+          </MaskReveal>
         </h1>
       </div>
       {intro && (
-        <p className="self-end leading-relaxed text-stone md:col-span-4">
+        <Reveal as="p" immediate delay={0.55} className="self-end leading-relaxed text-stone md:col-span-4">
           <T>{intro}</T>
-        </p>
+        </Reveal>
       )}
     </header>
   );

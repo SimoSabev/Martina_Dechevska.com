@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ImageReveal } from "./motion";
 
 type Props = {
   src: string | null | undefined;
@@ -16,14 +17,9 @@ export function Portrait({ src, alt, priority, sizes, className = "" }: Props) {
   return (
     <div className={`relative aspect-[4/5] overflow-hidden bg-ink ${className}`}>
       {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          sizes={sizes}
-          className="object-cover"
-        />
+        <ImageReveal eager={priority}>
+          <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
+        </ImageReveal>
       ) : (
         <div
           role="img"

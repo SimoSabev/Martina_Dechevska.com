@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowLink } from "@/components/arrow-link";
 import { JsonLd } from "@/components/json-ld";
+import { CountUp, ImageReveal, MaskReveal, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHeader } from "@/components/page-header";
 import { T } from "@/components/text";
 import { YouTubeVideo } from "@/components/youtube-video";
@@ -40,37 +41,43 @@ export default async function RealEstatePage() {
       {(page.photo || page.results.length > 0) && (
         <section className="container-site grid gap-16 pb-24 md:grid-cols-12 md:gap-10 md:pb-32">
           {page.photo && (
-            <div className="relative md:col-span-5">
-              <div
-                aria-hidden
+            <Parallax className="relative md:col-span-5" distance={24}>
+              <Reveal
+                y={0}
+                delay={0.5}
+                duration={1.8}
                 className="absolute inset-0 translate-x-4 translate-y-4 border border-olive/40 md:translate-x-6 md:translate-y-6"
               />
               <div className="relative aspect-[4/5] overflow-hidden bg-ink">
-                <Image
-                  src={page.photo}
-                  alt={page.photoAlt || settings.name}
-                  fill
-                  sizes="(min-width: 1344px) 520px, (min-width: 768px) 40vw, 100vw"
-                  className="object-cover object-top"
-                />
+                <ImageReveal>
+                  <Image
+                    src={page.photo}
+                    alt={page.photoAlt || settings.name}
+                    fill
+                    sizes="(min-width: 1344px) 520px, (min-width: 768px) 40vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </ImageReveal>
               </div>
-            </div>
+            </Parallax>
           )}
           {page.results.length > 0 && (
             <div className="flex flex-col justify-end md:col-span-6 md:col-start-7">
-              <h2 className="eyebrow">Selected results</h2>
-              <dl className="mt-10 border-t border-ink">
+              <Reveal as="h2" className="eyebrow" y={12}>
+                Selected results
+              </Reveal>
+              <Stagger as="dl" className="mt-10 border-t border-ink" stagger={0.16} delay={0.2}>
                 {page.results.map((result, i) => (
-                  <div key={i} className="grid gap-3 border-b border-sand py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
+                  <StaggerItem key={i} className="grid gap-3 border-b border-sand py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
                     <dt className="font-serif text-5xl leading-none text-ink md:text-6xl">
-                      <T>{result.value}</T>
+                      <CountUp value={result.value} />
                     </dt>
                     <dd className="self-center leading-relaxed text-stone">
                       <T>{result.label}</T>
                     </dd>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </dl>
+              </Stagger>
             </div>
           )}
         </section>
@@ -81,9 +88,10 @@ export default async function RealEstatePage() {
         <h2 id="services-heading" className="eyebrow">
           Services
         </h2>
-        <ol className="mt-10 border-t border-ink">
+        <Stagger as="ol" className="mt-10 border-t border-ink" stagger={0.12}>
           {page.services.map((service, i) => (
-            <li
+            <StaggerItem
+              as="li"
               key={i}
               className="grid gap-4 border-b border-sand py-10 md:grid-cols-12 md:items-baseline md:gap-10 md:py-12"
             >
@@ -96,9 +104,9 @@ export default async function RealEstatePage() {
               <p className="leading-relaxed text-stone md:col-span-6">
                 <T>{service.description}</T>
               </p>
-            </li>
+            </StaggerItem>
           ))}
-        </ol>
+        </Stagger>
       </section>
 
       {/* Video */}
@@ -113,13 +121,13 @@ export default async function RealEstatePage() {
                 <T>{page.videoTitle}</T>
               </p>
             </div>
-            <div className="md:col-span-8">
+            <Reveal delay={0.2} className="md:col-span-8">
               <YouTubeVideo
                 url={page.videoUrl}
                 title={page.videoTitle || "Real estate video"}
                 sizes="(min-width: 768px) 66vw, 100vw"
               />
-            </div>
+            </Reveal>
           </div>
         </section>
       )}
@@ -129,13 +137,13 @@ export default async function RealEstatePage() {
         <div className="container-site grid gap-16 py-20 md:grid-cols-12 md:py-28">
           <div className="md:col-span-7">
             <h2 className="eyebrow">Areas served</h2>
-            <ul className="mt-10 flex flex-wrap gap-x-10 gap-y-4 font-serif text-[clamp(1.85rem,3.4vw,3rem)] leading-tight">
+            <Stagger as="ul" className="mt-10 flex flex-wrap gap-x-10 gap-y-4 font-serif text-[clamp(1.85rem,3.4vw,3rem)] leading-tight" stagger={0.1}>
               {page.areas.map((area, i) => (
-                <li key={i}>
+                <StaggerItem as="li" key={i}>
                   <T>{area}</T>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
             {page.areasNote && (
               <p className="mt-10 max-w-lg leading-relaxed text-stone">
                 <T>{page.areasNote}</T>
@@ -143,7 +151,7 @@ export default async function RealEstatePage() {
             )}
           </div>
 
-          <div className="md:col-span-4 md:col-start-9">
+          <Reveal delay={0.2} className="md:col-span-4 md:col-start-9">
             <h2 className="eyebrow">Credentials</h2>
             <dl className="mt-10 space-y-6 text-sm">
               {credentials
@@ -167,7 +175,7 @@ export default async function RealEstatePage() {
                 </div>
               )}
             </dl>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -178,10 +186,12 @@ export default async function RealEstatePage() {
             <div className="md:col-span-5">
               <p className="eyebrow">Beyond the city</p>
               <h2 id="beyond-heading" className="mt-8 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.95] italic">
-                <T>{page.beyondTitle}</T>
+                <MaskReveal>
+                  <T>{page.beyondTitle}</T>
+                </MaskReveal>
               </h2>
             </div>
-            <div className="flex flex-col justify-end gap-8 md:col-span-6 md:col-start-7">
+            <Reveal delay={0.3} className="flex flex-col justify-end gap-8 md:col-span-6 md:col-start-7">
               {page.beyondText && (
                 <p className="text-lg leading-relaxed text-stone">
                   <T>{page.beyondText}</T>
@@ -193,7 +203,7 @@ export default async function RealEstatePage() {
                   <span className="sr-only"> (opens in a new tab)</span>
                 </ArrowLink>
               )}
-            </div>
+            </Reveal>
           </div>
         </section>
       )}
@@ -203,17 +213,19 @@ export default async function RealEstatePage() {
         <div className="container-site grid items-end gap-10 py-24 md:grid-cols-12 md:py-32">
           <div className="md:col-span-8">
             <h2 className="font-serif text-[clamp(2.75rem,6.5vw,5.5rem)] leading-[0.95]">
-              <T>{page.ctaTitle}</T>
+              <MaskReveal>
+                <T>{page.ctaTitle}</T>
+              </MaskReveal>
             </h2>
-            <p className="mt-6 max-w-lg text-lg text-ivory/80">
+            <Reveal as="p" delay={0.25} className="mt-6 max-w-lg text-lg text-ivory/80">
               <T>{page.ctaText}</T>
-            </p>
+            </Reveal>
           </div>
-          <div className="md:col-span-4 md:justify-self-end">
+          <Reveal delay={0.4} className="md:col-span-4 md:justify-self-end">
             <ArrowLink href="/contact" tone="dark">
               Arrange a consultation
             </ArrowLink>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

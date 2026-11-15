@@ -2,6 +2,7 @@ import Markdoc from "@markdoc/markdoc";
 import Image from "next/image";
 import React from "react";
 import { ArrowLink } from "@/components/arrow-link";
+import { ImageReveal, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHeader } from "@/components/page-header";
 import { T } from "@/components/text";
 import { YouTubeVideo } from "@/components/youtube-video";
@@ -26,18 +27,20 @@ export default async function LiteraturePage() {
         {page.books.length > 0 && (
           <div className="md:col-span-5 lg:col-span-4">
             <h2 className="eyebrow">Books</h2>
-            <ul className="mt-10 space-y-12">
+            <Stagger as="ul" className="mt-10 space-y-12" stagger={0.2}>
               {page.books.map((book) => (
-                <li key={book.title}>
+                <StaggerItem as="li" key={book.title}>
                   <div className="relative aspect-[2/3] max-w-xs overflow-hidden bg-ink">
                     {book.cover ? (
-                      <Image
-                        src={book.cover}
-                        alt={`Cover of ${book.title}`}
-                        fill
-                        sizes="(min-width: 768px) 320px, 80vw"
-                        className="object-cover"
-                      />
+                      <ImageReveal>
+                        <Image
+                          src={book.cover}
+                          alt={`Cover of ${book.title}`}
+                          fill
+                          sizes="(min-width: 768px) 320px, 80vw"
+                          className="object-cover"
+                        />
+                      </ImageReveal>
                     ) : (
                       <div className="on-dark absolute inset-0 flex flex-col justify-between bg-[radial-gradient(120%_80%_at_70%_10%,#2a2a25_0%,#141412_60%)] p-8">
                         <span className="text-[0.65rem] font-semibold tracking-[0.3em] text-mist uppercase">
@@ -67,14 +70,16 @@ export default async function LiteraturePage() {
                       <span className="sr-only"> (opens in a new tab)</span>
                     </ArrowLink>
                   )}
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </div>
         )}
 
         <div className="md:col-span-7 md:col-start-6 lg:col-span-6 lg:col-start-7">
-          <div className="prose-bio">{Markdoc.renderers.react(page.body, React)}</div>
+          <Reveal delay={0.3} className="prose-bio">
+            {Markdoc.renderers.react(page.body, React)}
+          </Reveal>
         </div>
       </section>
 
@@ -84,16 +89,16 @@ export default async function LiteraturePage() {
             <h2 id="literature-videos" className="eyebrow">
               On video
             </h2>
-            <ul className="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
+            <Stagger as="ul" className="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
               {videos.map((video) => (
-                <li key={video.url}>
+                <StaggerItem as="li" key={video.url}>
                   <YouTubeVideo url={video.url} title={video.title} sizes="(min-width: 768px) 50vw, 100vw" />
                   <h3 className="mt-6 font-serif text-[1.6rem] leading-[1.15]">
                     <T>{video.title}</T>
                   </h3>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </div>
         </section>
       )}

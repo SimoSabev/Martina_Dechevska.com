@@ -70,7 +70,7 @@ export function VideoPlayer({ source, poster, title, duration, sizes }: Props) {
               alt=""
               fill
               sizes={sizes}
-              className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-1000 ease-out-soft group-hover:scale-[1.03]"
             />
           )}
           <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />

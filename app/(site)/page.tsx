@@ -1,5 +1,6 @@
 import { ArrowLink } from "@/components/arrow-link";
 import { JsonLd } from "@/components/json-ld";
+import { CountUp, MaskReveal, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { Portrait } from "@/components/portrait";
 import { T } from "@/components/text";
 import { getHome, getSettings } from "@/lib/content";
@@ -40,26 +41,38 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="container-site grid items-end gap-12 pt-14 pb-20 md:grid-cols-12 md:gap-10 md:pt-20 lg:pb-28">
         <div className="md:col-span-7 lg:col-span-7">
-          <p className="eyebrow">{settings.roleLine}</p>
+          <Reveal as="p" className="eyebrow" immediate delay={0.1} y={12}>
+            {settings.roleLine}
+          </Reveal>
           <h1 className="mt-8 font-serif text-display font-medium">
-            <span className="block">{firstName}</span>
-            <span className="block pl-[0.6em] italic">{rest.join(" ")}</span>
+            <MaskReveal immediate delay={0.2}>
+              {firstName}
+            </MaskReveal>
+            <MaskReveal immediate delay={0.38} className="pl-[0.6em] italic">
+              {rest.join(" ")}
+            </MaskReveal>
           </h1>
-          <p className="mt-10 max-w-xl font-serif text-[1.65rem] leading-snug text-ink sm:text-3xl">
+          <Reveal as="p" immediate delay={0.7} className="mt-10 max-w-xl font-serif text-[1.65rem] leading-snug text-ink sm:text-3xl">
             <T>{home.tagline}</T>
-          </p>
-          <p className="mt-6 max-w-lg leading-relaxed text-stone">
+          </Reveal>
+          <Reveal as="p" immediate delay={0.85} className="mt-6 max-w-lg leading-relaxed text-stone">
             <T>{home.intro}</T>
-          </p>
-          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-x-10">
+          </Reveal>
+          <Reveal immediate delay={1} className="mt-12 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-x-10">
             <ArrowLink href="/real-estate">{home.realEstateTitle}</ArrowLink>
             <ArrowLink href="/journalism">{home.journalismTitle}</ArrowLink>
             <ArrowLink href="/literature">{home.literatureTitle}</ArrowLink>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="relative md:col-span-5">
-          <div aria-hidden className="absolute -inset-0 translate-x-4 translate-y-4 border border-olive/40 md:translate-x-6 md:translate-y-6" />
+        <Parallax className="relative md:col-span-5" distance={24}>
+          <Reveal
+            immediate
+            delay={0.6}
+            y={0}
+            duration={1.8}
+            className="absolute -inset-0 translate-x-4 translate-y-4 border border-olive/40 md:translate-x-6 md:translate-y-6"
+          />
           <Portrait
             src={home.portrait}
             alt={home.portraitAlt || settings.name}
@@ -67,15 +80,19 @@ export default async function HomePage() {
             sizes="(min-width: 1344px) 520px, (min-width: 768px) 40vw, 100vw"
             className="relative"
           />
-        </div>
+        </Parallax>
       </section>
 
       {/* Statement */}
       <section className="on-dark bg-ink text-ivory">
         <div className="container-site py-24 md:py-36">
           <p className="mx-auto max-w-5xl text-center font-serif text-[clamp(2rem,4.6vw,4rem)] leading-[1.12] font-normal">
-            <span aria-hidden className="mb-8 block text-lime">—</span>
-            <T>{home.statement}</T>
+            <Reveal as="span" y={0} className="mb-8 block text-lime">
+              <span aria-hidden>—</span>
+            </Reveal>
+            <Reveal as="span" y={40} duration={1.7} delay={0.15} className="block">
+              <T>{home.statement}</T>
+            </Reveal>
           </p>
         </div>
       </section>
@@ -85,9 +102,10 @@ export default async function HomePage() {
         <h2 id="paths-heading" className="eyebrow">
           Three disciplines
         </h2>
-        <div className="mt-12 grid border-t border-ink md:grid-cols-3">
+        <Stagger className="mt-12 grid border-t border-ink md:grid-cols-3" stagger={0.18}>
           {paths.map((path, i) => (
-            <article
+            <StaggerItem
+              as="article"
               key={path.href}
               className={`group relative flex flex-col justify-between gap-16 border-b border-sand py-12 transition-colors duration-500 hover:bg-paper md:min-h-[26rem] md:p-10 lg:p-12 ${i < paths.length - 1 ? "md:border-r" : ""}`}
             >
@@ -103,17 +121,17 @@ export default async function HomePage() {
               <ArrowLink href={path.href} className="after:absolute after:inset-0">
                 {path.cta}
               </ArrowLink>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* Highlights */}
       {home.highlights.length > 0 && (
         <section aria-label="Highlights" className="border-y border-sand bg-paper">
-          <dl className="container-site grid gap-y-12 py-20 sm:grid-cols-3 md:py-24">
+          <Stagger as="dl" className="container-site grid gap-y-12 py-20 sm:grid-cols-3 md:py-24" stagger={0.16}>
             {home.highlights.map((item, i) => (
-              <div
+              <StaggerItem
                 key={i}
                 className={`flex flex-col-reverse gap-3 sm:px-8 ${i > 0 ? "sm:border-l sm:border-sand" : "sm:pl-0"}`}
               >
@@ -121,11 +139,11 @@ export default async function HomePage() {
                   <T>{item.label}</T>
                 </dt>
                 <dd className="font-serif text-6xl leading-none text-ink md:text-7xl">
-                  <T>{item.value}</T>
+                  <CountUp value={item.value} />
                 </dd>
-              </div>
+              </StaggerItem>
             ))}
-          </dl>
+          </Stagger>
         </section>
       )}
 
@@ -133,11 +151,14 @@ export default async function HomePage() {
       <section className="container-site py-24 md:py-36">
         <div className="grid items-end gap-10 md:grid-cols-12">
           <h2 className="font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.95] md:col-span-8">
-            Begin with a <span className="italic">conversation.</span>
+            <MaskReveal>Begin with a</MaskReveal>
+            <MaskReveal delay={0.15} className="italic">
+              conversation.
+            </MaskReveal>
           </h2>
-          <div className="md:col-span-4 md:justify-self-end">
+          <Reveal delay={0.4} className="md:col-span-4 md:justify-self-end">
             <ArrowLink href="/contact">Get in touch</ArrowLink>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>
