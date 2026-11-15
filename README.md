@@ -114,7 +114,7 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] NY Fair Housing Notice and Standard Operating Procedures: links or wording from Find Real Estate (placeholder in the footer)
 - [ ] Official Equal Housing Opportunity logo file (replace the glyph in `components/equal-housing.tsx`)
 - [ ] LinkedIn and Instagram URLs
-- [ ] Higher-resolution original of the solo portrait (the current file is 645 px wide) and a second solo photo for About. The three Getty Images event photos cannot be used: they are watermarked and licensed by Getty.
+- [ ] Higher-resolution original of the solo portrait (the current file is 645 px wide) and a second solo photo for About.
 - [ ] Zillow reviews to publish: paste the text and reviewer names (Zillow could not be fetched from the build environment)
 - [ ] Titles for the YouTube videos `QLyCdtdveBg` (Journalism) and `NZWQxdlFTpQ` (Real Estate)
 - [ ] Cover of S@MOT@, and a purchase link if one should be shown
@@ -123,6 +123,8 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] Domain registrar access, and a GitHub account for Martina
 
 **To confirm:**
+
+- [ ] Getty Images photos on About (Noam Galai): shown with the watermark at Martina's request. Getty licenses watermarked comps for layout only, so publishing them can draw a licensing claim. Buying a web licence removes the risk and the watermark.
 
 - [ ] "Founder & Managing Director of The Empire Team" (Martina's correction), next to the earlier bio's "co-leads with Dimitar Nikolov". Also confirm the colleague in the Real Estate photo and whether to name him in the alt text.
 - [ ] Brokerage name exactly as on the license ("Find Real Estate" vs "FIND REAL ESTATE LLC")

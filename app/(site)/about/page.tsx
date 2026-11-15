@@ -1,4 +1,5 @@
 import Markdoc from "@markdoc/markdoc";
+import Image from "next/image";
 import React from "react";
 import { ArrowLink } from "@/components/arrow-link";
 import { JsonLd } from "@/components/json-ld";
@@ -47,6 +48,36 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+
+      {about.gallery.length > 0 && (
+        <section aria-labelledby="gallery-heading" className="border-t border-sand bg-paper">
+          <div className="container-site py-24 md:py-32">
+            <h2 id="gallery-heading" className="eyebrow">
+              Photos
+            </h2>
+            <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {about.gallery
+                .filter((photo) => photo.image)
+                .map((photo, i) => (
+                  <li key={i}>
+                    <figure>
+                      <div className="relative aspect-[2/3] overflow-hidden bg-ink">
+                        <Image
+                          src={photo.image!}
+                          alt={photo.alt || settings.name}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      {photo.credit && <figcaption className="mt-3 text-xs text-stone">Photo: {photo.credit}</figcaption>}
+                    </figure>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </section>
+      )}
     </>
   );
 }

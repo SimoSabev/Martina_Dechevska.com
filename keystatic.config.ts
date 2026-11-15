@@ -112,6 +112,14 @@ function localeSchema(locale: Locale) {
         portrait: imageField("Photo", "about", "Second photo for the About page (optional)."),
         portraitAlt: fields.text({ label: "Photo description (alt text)" }),
         body: fields.markdoc({ label: "Biography", extension: "md" }),
+        gallery: fields.array(
+          fields.object({
+            image: imageField("Photo", "about"),
+            alt: fields.text({ label: "Photo description (alt text)" }),
+            credit: fields.text({ label: "Photo credit", description: "e.g. 'Noam Galai / Getty Images'." }),
+          }),
+          { label: "Photo gallery", itemLabel: (props) => props.fields.alt.value || "Photo" },
+        ),
       },
     }),
 

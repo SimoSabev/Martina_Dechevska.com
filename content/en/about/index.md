@@ -8,6 +8,16 @@ portrait: /images/about/portrait.webp
 portraitAlt: >-
   Martina Dechevska in a green tweed suit on the steps of a New York
   brownstone
+gallery:
+  - image: /images/about/gallery-1.jpg
+    alt: Martina Dechevska in a floral dress and black blazer at an evening event
+    credit: Noam Galai / Getty Images
+  - image: /images/about/gallery-2.jpg
+    alt: Martina Dechevska smiling at an evening event
+    credit: Noam Galai / Getty Images
+  - image: /images/about/gallery-3.jpg
+    alt: Martina Dechevska on the red carpet at a gala in New York
+    credit: Noam Galai / Getty Images
 ---
 Martina began her journalism career at just 18, contributing to Pod Tepeto, a local website in her hometown of Plovdiv, before earning a bachelor's degree in Journalism from Sofia University, majoring in Radio and International Journalism. Her early experience included the Bulgarian News Agency (BTA), where she stood out as a top-performing intern, and — between the ages of 19 and 21 — Dow Jones Factiva, covering financial markets, the opening and closing of the Paris Stock Exchange, and international mergers and acquisitions.
 
