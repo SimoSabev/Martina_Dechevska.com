@@ -1,28 +1,83 @@
-heading: Real estate, handled with discretion.
+heading: Beyond properties. Beyond expectations.
 intro: >-
-  [Introduction to Martina's real estate practice — the clients she
-  represents and how she works.]
+  Martina represents buyers, sellers, landlords and investors across New York
+  City's five boroughs, with a particular focus on Manhattan and Brooklyn —
+  combining market expertise with an instinct for people, properties and
+  negotiation.
+photo: /images/real-estate/photo.jpg
+photoAlt: >-
+  Martina Dechevska with a colleague from The Empire Team outside a New York
+  brownstone
+results:
+  - value: 15.8%
+    label: >-
+      Below asking price, secured for a buyer through strategic negotiation in a
+      competitive market.
+  - value: '2'
+    label: >-
+      All-cash offers above asking within one week, after repositioning a
+      property listing.
+  - value: '23'
+    label: >-
+      Vacant apartments leased in two weeks, cutting a private landlord's
+      vacancies from 26 units to three.
+videoUrl: https://www.youtube.com/watch?v=NZWQxdlFTpQ
+videoTitle: '[Title of the real estate video]'
 services:
-  - title: '[Service one]'
-    description: '[One or two sentences describing the service.]'
-  - title: '[Service two]'
-    description: '[One or two sentences describing the service.]'
-  - title: '[Service three]'
-    description: '[One or two sentences describing the service.]'
+  - title: Buying
+    description: >-
+      From first homes to luxury residences. As a Certified Buyer
+      Representative, Martina negotiates on her clients' side — and her
+      relationships with New York landlords and owners open doors beyond the
+      usual listing platforms.
+  - title: Selling
+    description: >-
+      Pricing, positioning and presentation that make a property stand out, with
+      an editor's eye for the story that makes every home distinctive.
+  - title: Landlords & leasing
+    description: >-
+      Exclusive building representation, marketing and leasing for property
+      owners, built on years of work with New York's residential rental market.
+  - title: Investment
+    description: >-
+      Identifying undervalued opportunities, negotiating favourable terms and
+      repositioning properties for the market.
+  - title: International clients
+    description: >-
+      Work in Bulgarian, English, French and Spanish, plus introductions to
+      off-market and international real estate through a network that spans
+      several countries.
 areas:
-  - '[Area one]'
-  - '[Area two]'
-  - '[Area three]'
-brokerage: '[Brokerage name]'
-brokerageAddress: '[Brokerage office address]'
+  - Manhattan
+  - Brooklyn
+  - Queens
+  - The Bronx
+  - Staten Island
+areasNote: >-
+  All five boroughs, with a focus on Manhattan and Brooklyn. Martina also works
+  with clients across greater New York State and internationally.
+beyondTitle: Windham Art House
+beyondText: >-
+  In the Catskills, Martina owns and runs Windham Art House — another
+  expression of the personal attention and hospitality that define her work.
+beyondUrl: https://www.windhamarthouse.com
+beyondLinkLabel: Visit Windham Art House
+role: Founder & Managing Director
+team: The Empire Team
+memberships: >-
+  Certified Buyer Representative · Member, Long Island Board of REALTORS®
+  (LIBOR)
+agentEmail: martina@findrealestate.com
+brokerage: Find Real Estate
+brokerageAddress: 5 West 37th Street, 12th Floor, New York, NY 10018
 brokeragePhone: '[Brokerage office phone]'
-licenseType: '[License type, exactly as on the license]'
-licenseState: '[State]'
-licenseNumber: '[License number]'
+licenseType: Licensed Associate Real Estate Broker
+licenseState: New York
+licenseNumber: '10301219691'
 showEqualHousing: true
 disclosures: >-
-  [State-required disclosures — exact wording to be confirmed with the
-  brokerage.]
+  [New York Fair Housing Notice and Standard Operating Procedures — links or
+  wording from Find Real Estate.]
 ctaTitle: Considering a move?
 ctaText: >-
   A private conversation is the best place to start.

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Video } from "@/lib/content";
+import { youtubeId, youtubeThumbnail } from "@/lib/youtube";
 import { Arrow } from "./arrow-link";
 import { T } from "./text";
 import { VideoPlayer } from "./video-player";
@@ -9,6 +10,12 @@ type Props = { video: Video; large?: boolean };
 export function VideoCard({ video, large = false }: Props) {
   const sizes = large ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
   const meta = [video.outlet, video.when, video.language].filter(Boolean) as string[];
+  const ytId = youtubeId(video.youtubeUrl);
+  const source = video.video
+    ? ({ kind: "file", src: video.video } as const)
+    : ytId
+      ? ({ kind: "youtube", id: ytId } as const)
+      : null;
 
   return (
     <article className="flex h-full flex-col border-t border-ink pt-8 pb-10">
@@ -21,10 +28,10 @@ export function VideoCard({ video, large = false }: Props) {
       </div>
 
       <div className="mt-6">
-        {video.video ? (
+        {source ? (
           <VideoPlayer
-            src={video.video}
-            poster={video.poster}
+            source={source}
+            poster={video.poster || (ytId ? youtubeThumbnail(ytId) : null)}
             title={video.title}
             duration={video.duration}
             sizes={sizes}

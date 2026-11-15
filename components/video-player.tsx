@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  src: string;
+  /** Self-hosted MP4 path, or a YouTube video ID. */
+  source: { kind: "file"; src: string } | { kind: "youtube"; id: string };
   poster: string | null | undefined;
   title: string;
   duration?: string | null;
@@ -13,33 +14,49 @@ type Props = {
 
 /**
  * Click-to-play facade. Until the visitor presses play, the page only loads an
- * optimised poster image — no video bytes — so a grid of reports costs about
- * as much as a grid of photos.
+ * optimised poster image — no video bytes, no YouTube scripts or cookies — so
+ * a grid of reports costs about as much as a grid of photos.
  */
-export function VideoPlayer({ src, poster, title, duration, sizes }: Props) {
+export function VideoPlayer({ source, poster, title, duration, sizes }: Props) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (!playing) return;
     const video = videoRef.current;
-    video?.focus();
-    // Autoplay can be refused (e.g. data saver); native controls stay usable.
-    video?.play().catch(() => {});
+    if (video) {
+      video.focus();
+      // Autoplay can be refused (e.g. data saver); native controls stay usable.
+      video.play().catch(() => {});
+    } else {
+      frameRef.current?.focus();
+    }
   }, [playing]);
 
   return (
     <div className="relative aspect-video overflow-hidden bg-ink">
       {playing ? (
-        <video
-          ref={videoRef}
-          src={src}
-          controls
-          playsInline
-          preload="auto"
-          aria-label={title}
-          className="absolute inset-0 h-full w-full bg-ink object-contain"
-        />
+        source.kind === "file" ? (
+          <video
+            ref={videoRef}
+            src={source.src}
+            controls
+            playsInline
+            preload="auto"
+            aria-label={title}
+            className="absolute inset-0 h-full w-full bg-ink object-contain"
+          />
+        ) : (
+          <iframe
+            ref={frameRef}
+            src={`https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0`}
+            title={title}
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        )
       ) : (
         <button
           type="button"

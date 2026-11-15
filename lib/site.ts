@@ -5,6 +5,7 @@ export const siteUrl = (
 export const navigation = [
   { href: "/about", label: "About" },
   { href: "/journalism", label: "Journalism" },
+  { href: "/literature", label: "Literature" },
   { href: "/real-estate", label: "Real Estate" },
   { href: "/contact", label: "Contact" },
 ] as const;

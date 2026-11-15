@@ -49,6 +49,7 @@ function localeSchema(locale: Locale) {
         location: fields.text({ label: "Based in", description: "City and state, e.g. 'Miami, Florida'." }),
         linkedin: fields.url({ label: "LinkedIn URL" }),
         instagram: fields.url({ label: "Instagram URL" }),
+        facebook: fields.url({ label: "Facebook URL" }),
         archiveUrl: fields.url({
           label: "Journalism archive URL",
           defaultValue: "https://flowersinagun.com",
@@ -83,6 +84,8 @@ function localeSchema(locale: Locale) {
         }),
         journalismTitle: fields.text({ label: "Journalism path — title" }),
         journalismText: fields.text({ label: "Journalism path — text", multiline: true }),
+        literatureTitle: fields.text({ label: "Literature path — title" }),
+        literatureText: fields.text({ label: "Literature path — text", multiline: true }),
         realEstateTitle: fields.text({ label: "Real estate path — title" }),
         realEstateText: fields.text({ label: "Real estate path — text", multiline: true }),
         highlights: fields.array(
@@ -134,6 +137,21 @@ function localeSchema(locale: Locale) {
       schema: {
         heading: fields.text({ label: "Heading", multiline: true }),
         intro: fields.text({ label: "Introduction", multiline: true }),
+        photo: imageField("Photo", "real-estate", "Shown next to the introduction. Portrait or landscape."),
+        photoAlt: fields.text({ label: "Photo description (alt text)" }),
+        results: fields.array(
+          fields.object({
+            value: fields.text({ label: "Figure", description: "e.g. '15.8%'" }),
+            label: fields.text({ label: "What it means", multiline: true }),
+          }),
+          {
+            label: "Selected results",
+            description: "Optional. Leave empty to hide. Only results you can document.",
+            itemLabel: (props) => `${props.fields.value.value} — ${props.fields.label.value}`,
+          },
+        ),
+        videoUrl: fields.url({ label: "Video (YouTube link, optional)" }),
+        videoTitle: fields.text({ label: "Video title" }),
         services: fields.array(
           fields.object({
             title: fields.text({ label: "Service" }),
@@ -145,6 +163,15 @@ function localeSchema(locale: Locale) {
           label: "Areas served",
           itemLabel: (props) => props.value,
         }),
+        areasNote: fields.text({ label: "Areas — note", multiline: true }),
+        beyondTitle: fields.text({ label: "Beyond the city — title" }),
+        beyondText: fields.text({ label: "Beyond the city — text", multiline: true }),
+        beyondUrl: fields.url({ label: "Beyond the city — link" }),
+        beyondLinkLabel: fields.text({ label: "Beyond the city — link text" }),
+        role: fields.text({ label: "Role", description: "e.g. 'Founder & Managing Director'." }),
+        team: fields.text({ label: "Team name" }),
+        memberships: fields.text({ label: "Designations & memberships", multiline: true }),
+        agentEmail: fields.text({ label: "Real estate email" }),
         brokerage: fields.text({ label: "Brokerage name" }),
         brokerageAddress: fields.text({ label: "Brokerage office address", multiline: true }),
         brokeragePhone: fields.text({ label: "Brokerage office phone" }),
@@ -165,6 +192,34 @@ function localeSchema(locale: Locale) {
         }),
         ctaTitle: fields.text({ label: "Call to action — title" }),
         ctaText: fields.text({ label: "Call to action — text", multiline: true }),
+      },
+    }),
+
+    literature: singleton({
+      label: label("Literature page", locale),
+      path: `${root}/literature/`,
+      format: { data: "yaml", contentField: "body" },
+      schema: {
+        heading: fields.text({ label: "Heading", multiline: true }),
+        lede: fields.text({ label: "Opening paragraph", multiline: true }),
+        body: fields.markdoc({ label: "Text", extension: "md" }),
+        books: fields.array(
+          fields.object({
+            title: fields.text({ label: "Title" }),
+            year: fields.text({ label: "Year / status", description: "e.g. '2015' or 'Forthcoming'." }),
+            note: fields.text({ label: "Note", multiline: true }),
+            url: fields.url({ label: "Where to buy (optional)" }),
+            cover: imageField("Cover", "literature"),
+          }),
+          { label: "Books", itemLabel: (props) => props.fields.title.value },
+        ),
+        videos: fields.array(
+          fields.object({
+            title: fields.text({ label: "Title" }),
+            url: fields.url({ label: "YouTube link" }),
+          }),
+          { label: "Videos", itemLabel: (props) => props.fields.title.value },
+        ),
       },
     }),
 
@@ -221,9 +276,13 @@ function localeSchema(locale: Locale) {
           directory: "public/videos",
           publicPath: "/videos/",
         }),
+        youtubeUrl: fields.url({
+          label: "Or: YouTube link",
+          description: "Plays on the page. Recommended for most videos: upload to YouTube and paste the link.",
+        }),
         externalUrl: fields.url({
-          label: "Or: link to the published video",
-          description: "Used when no file is uploaded, e.g. the report on the broadcaster's website or YouTube.",
+          label: "Or: link to the published video elsewhere",
+          description: "Opens in a new tab, e.g. the report on the broadcaster's website.",
         }),
         poster: imageField("Cover image", "videos", "A still from the report, 16:9."),
         summary: fields.text({ label: "Short summary (optional)", multiline: true }),
@@ -257,7 +316,7 @@ export default config({
   ui: {
     brand: { name: "Martina Dechevska" },
     navigation: {
-      Pages: ["home", "about", "journalism", "realEstate", "contact"],
+      Pages: ["home", "about", "journalism", "literature", "realEstate", "contact"],
       Journalism: ["articles", "videos"],
       Settings: ["settings"],
     },

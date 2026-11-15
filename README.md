@@ -4,7 +4,7 @@ Personal site for Martina Dechevska — journalist and real estate broker.
 
 - **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Keystatic CMS (content in Git) · Vercel
 - **Running cost:** $0 (Vercel Hobby, Keystatic in GitHub mode, no database, no paid services)
-- **Pages:** Home · About · Journalism · Real Estate · Contact
+- **Pages:** Home · About · Journalism · Literature · Real Estate · Contact
 
 ```bash
 npm install
@@ -49,6 +49,7 @@ Anything shown as `[in brackets]` on the site is a placeholder still waiting for
 | Journalism page + Articles & publications | Intro, archive block, video section heading, one entry per article (title, outlet, date, link, summary, featured) |
 | Video reports | One entry per report: title, outlet, when, language, duration, video file *or* link, cover image, summary, copyright credit, order |
 | Real estate page | Services, areas, brokerage, license, Equal Housing toggle, disclosures, call to action |
+| Literature page | Heading, opening line, text, books (title, year, note, cover, link), YouTube videos |
 | Contact page | Heading and intro |
 
 Content files live in `content/en/`; uploaded images in `public/images/`.
@@ -103,46 +104,27 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 
 ---
 
-## Content needed from Martina
+## Content status
 
-**Facts (must come from Martina — nothing has been invented):**
+**Done (from Martina's answers, Nov 2026):** biography, journalism, literature and real estate copy; license, brokerage, team, office, areas; 10 selected articles; contact email/phone; Facebook; home and real estate photos; 8 video reports.
 
-- [ ] Professional portrait (portrait orientation, ≥1200px wide) + a second photo for About (optional)
-- [ ] Two-to-three sentence intro for the home page
-- [ ] Biography: opening paragraph + full text
-- [ ] Journalism intro (subjects covered, outlets)
-- [ ] Selected articles: title, outlet, date, link, optional one-line summary (replace the three placeholder entries)
-- [ ] Real estate intro and the services offered (title + 1–2 sentences each)
-- [ ] Areas served
-- [ ] Brokerage name, office address, office phone
-- [ ] License type (exact wording), licensing state, license number
-- [ ] Email, phone, city/state
+**Still needed:**
+
+- [ ] Brokerage office phone (shown in the footer and Real Estate credentials; required in NY advertising)
+- [ ] NY Fair Housing Notice and Standard Operating Procedures: links or wording from Find Real Estate (placeholder in the footer)
+- [ ] Official Equal Housing Opportunity logo file (replace the glyph in `components/equal-housing.tsx`)
 - [ ] LinkedIn and Instagram URLs
-- [ ] Highlight figures for the home page (only verifiable numbers — or delete the section)
+- [ ] Higher-resolution original of the solo portrait (the current file is 645 px wide) and a second solo photo for About. The three Getty Images event photos cannot be used: they are watermarked and licensed by Getty.
+- [ ] Zillow reviews to publish: paste the text and reviewer names (Zillow could not be fetched from the build environment)
+- [ ] Titles for the YouTube videos `QLyCdtdveBg` (Journalism) and `NZWQxdlFTpQ` (Real Estate)
+- [ ] Cover of S@MOT@, and a purchase link if one should be shown
+- [ ] Book videos (premiere, "Часът на Милен Цветков" 05.03.2015, promo) and the remaining bTV and ZoomIn.TV reports Martina chose (Drew Barrymore/Madeline Stuart, Keira Knightley, Jeremy Scott, Goodfellas reunion, all bTV recordings). These files are over the 10 MB the Drive connector can download. Recommended: upload them to Martina's YouTube channel and paste each link into Keystatic (Video reports → "YouTube link", or Literature → Videos).
+- [ ] Contact form choice; recommended: direct delivery via a free form service, because a `mailto:` form loses visitors who have no email app set up
+- [ ] Domain registrar access, and a GitHub account for Martina
 
-**Video reports (seeded from the "Journalism Work" Drive folder):**
+**To confirm:**
 
-- [ ] Confirm permission to show the ZoomIn.TV and bTV footage on a personal site. Both outlets own the copyright ("© ZoomIn.TV 2014 All Rights Reserved" is on the end cards), so each entry is credited. If either outlet objects, swap in a link to the published copy.
-- [ ] Check the inferred details: the bTV report is dated March 2014 from the event it covers (the East Harlem explosion), and the English title is a translation of the on-screen headline; the Ashley Graham piece is dated 2015 from the show it covers (Addition Elle SS16 at NYFW). Other years come from the end cards.
-- [ ] Choose more reports from the folder (it holds ~60 ZoomIn.TV pieces and more bTV recordings; most are over the 10 MB the Drive connector could download). Pieces left out on purpose because of their headlines: the Milo Yiannopoulos clip, Kevin Spacey at Tribeca, "Gal Gadot's message to her boob trolls", "Keira Knightley talks about being called a sh*t actress".
-
-**To confirm (compliance):**
-
-- [ ] Equal Housing Opportunity: confirm required; replace the placeholder glyph in `components/equal-housing.tsx` with the official logo file
-- [ ] State-required advertising disclosures — exact wording from the brokerage / state commission (e.g. whether the brokerage name and phone must appear on every page, which the footer already supports)
-- [ ] Whether her state requires a specific consumer notice/link (e.g. Texas IABS, New York Standard Operating Procedures and Fair Housing Notice)
-
-**Biography drafts from public sources (need Martina's approval):**
-
-The About lede, biography paragraphs one and two, and the Journalism intro are drafted from her public author profile and press coverage: born in Plovdiv, lives in New York, US correspondent for bTV News, wrote for VICE, Maxim Bulgaria, Dnevnik and BNT's BuntART. ZoomIn.TV comes from the footage itself. No years are stated because none could be verified.
-
-- [ ] Check the outlet names and roles (e.g. whether it was VICE Bulgaria, and the exact title at bTV)
-- [ ] Fill in when she moved to New York (still in brackets in paragraph one)
-- [ ] Decide whether to mention her novel *С@мот@* (2015), which got wide press coverage in Bulgaria. It is left out of the drafts.
-
-**Drafts written for approval (marketing copy, no factual claims):**
-
-- [ ] Tagline: "A journalist's instinct for the truth. A broker's command of the deal."
-- [ ] Statement: "Every great story and every great property comes down to the same thing — knowing which questions to ask."
-- [ ] Headings: "Two careers, one discipline." · "Selected writing." · "Real estate, handled with discretion." · "Let's talk." · "Considering a move?"
-- [ ] Path texts on the home page and the Flowers in a Gun archive blurb
+- [ ] "Founder & Managing Director of The Empire Team" (Martina's correction), next to the earlier bio's "co-leads with Dimitar Nikolov". Also confirm the colleague in the Real Estate photo and whether to name him in the alt text.
+- [ ] Brokerage name exactly as on the license ("Find Real Estate" vs "FIND REAL ESTATE LLC")
+- [ ] Article dates: The Rocket is shown as April 2013 (Tribeca 2013); the Bernini piece has no date. Titles of these two and of the VICE piece come from Martina's list, not the published pages.
+- [ ] Footage rights for the ZoomIn.TV and bTV videos (credited on every entry). Gal Gadot clip retitled "…her online trolls" to match the Keira Knightley rename.

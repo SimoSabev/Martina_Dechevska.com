@@ -12,7 +12,7 @@ export function ArticleCard({ article }: { article: Article }) {
         <span>
           <T>{article.outlet}</T>
         </span>
-        {date ? <time dateTime={article.date!}>{dateFormat.format(date)}</time> : <span className="is-placeholder">[Date]</span>}
+        {date && <time dateTime={article.date!}>{dateFormat.format(date)}</time>}
       </div>
       <h3 className="mt-6 font-serif text-[1.85rem] leading-[1.15] text-ink">
         <T>{article.title}</T>
@@ -22,10 +22,12 @@ export function ArticleCard({ article }: { article: Article }) {
           <T>{article.excerpt}</T>
         </p>
       )}
-      <span className="mt-auto flex items-center gap-3 pt-10 text-[0.7rem] font-semibold tracking-[0.22em] text-ink uppercase">
-        {article.url ? "Read article" : <span className="is-placeholder">[Link to article]</span>}
-        <Arrow className="h-3 w-7 transition-transform duration-500 ease-out-soft group-hover:translate-x-1.5" />
-      </span>
+      {article.url && (
+        <span className="mt-auto flex items-center gap-3 pt-10 text-[0.7rem] font-semibold tracking-[0.22em] text-ink uppercase">
+          Read article
+          <Arrow className="h-3 w-7 transition-transform duration-500 ease-out-soft group-hover:translate-x-1.5" />
+        </span>
+      )}
     </>
   );
 

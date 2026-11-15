@@ -21,12 +21,12 @@ export function personSchema(settings: Settings, home?: Home) {
     "@id": personId,
     name: settings.name,
     url: siteUrl,
-    jobTitle: ["Journalist", "Real Estate Broker"],
+    jobTitle: ["Associate Real Estate Broker", "Journalist", "Writer"],
     description: filled(settings.seoDescription),
     image: home?.portrait ? absoluteUrl(home.portrait) : undefined,
     email: filled(settings.email) ? `mailto:${filled(settings.email)}` : undefined,
     telephone: filled(settings.phone),
-    sameAs: [settings.linkedin, settings.instagram, settings.archiveUrl].filter(Boolean),
+    sameAs: [settings.linkedin, settings.instagram, settings.facebook, settings.archiveUrl].filter(Boolean),
   });
 }
 
@@ -39,8 +39,9 @@ export function realEstateAgentSchema(settings: Settings, realEstate: RealEstate
     "@id": `${siteUrl}/real-estate#agent`,
     name: settings.name,
     url: absoluteUrl("/real-estate"),
-    email: filled(settings.email),
+    email: filled(realEstate.agentEmail) ?? filled(settings.email),
     telephone: filled(settings.phone),
+    image: realEstate.photo ? absoluteUrl(realEstate.photo) : undefined,
     areaServed: areas.length ? areas : undefined,
     parentOrganization: brokerage
       ? clean({

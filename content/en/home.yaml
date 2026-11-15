@@ -1,23 +1,29 @@
-tagline: >-
-  A journalist's instinct for the truth. A broker's command of the deal.
+tagline: Between worlds. Between words. Beyond the frame.
 intro: >-
-  [Two or three sentences introducing Martina — who she is, where she works,
-  and who she works with.]
-portraitAlt: Portrait of Martina Dechevska
-statement: >-
-  Every great story and every great property comes down to the same thing —
-  knowing which questions to ask.
+  Born in Plovdiv, Bulgaria, and based in New York, Martina Dechevska is an
+  Associate Real Estate Broker and the founder of The Empire Team at Find Real
+  Estate — and a journalist and novelist whose reporting has taken her from the
+  United Nations to New York Fashion Week.
+portrait: /images/home/portrait.webp
+portraitAlt: >-
+  Martina Dechevska in a green tweed suit on the steps of a New York
+  brownstone
+statement: An observer by nature. A journalist by profession. A storyteller at heart.
 journalismTitle: Journalism
 journalismText: >-
-  Selected writing and reporting, and the archive of Flowers in a
-  Gun.
+  US correspondent for bTV, reporter for BNT's BuntART, founder of ZoomIn.TV's
+  New York bureau, and writing for VICE, Maxim and Dnevnik.
+literatureTitle: Literature
+literatureText: >-
+  S@MOT@, a genre-bending debut novel, and new fiction written in English.
 realEstateTitle: Real Estate
 realEstateText: >-
-  Discreet, informed representation across [areas served].
+  Buyers, sellers, landlords and investors across New York City's five
+  boroughs, with a focus on Manhattan and Brooklyn.
 highlights:
-  - value: '[00]'
-    label: '[Years in journalism]'
-  - value: '[00]'
-    label: '[Years in real estate]'
-  - value: '[00]'
-    label: '[Verifiable figure]'
+  - value: 15+
+    label: Professionals on The Empire Team
+  - value: '12'
+    label: Manhattan buildings represented exclusively in her first six months
+  - value: '4'
+    label: Languages — Bulgarian, English, French, Spanish

@@ -40,8 +40,9 @@ export default async function AboutPage() {
           <div className="prose-bio mt-12 border-t border-sand pt-12">
             {Markdoc.renderers.react(about.body, React)}
           </div>
-          <div className="mt-16 flex flex-col gap-6 border-t border-sand pt-10 sm:flex-row sm:gap-12">
+          <div className="mt-16 flex flex-col gap-6 border-t border-sand pt-10 sm:flex-row sm:flex-wrap sm:gap-x-10">
             <ArrowLink href="/journalism">Journalism</ArrowLink>
+            <ArrowLink href="/literature">Literature</ArrowLink>
             <ArrowLink href="/real-estate">Real Estate</ArrowLink>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { createReader } from "@keystatic/core/reader";
-import Markdoc, { type RenderableTreeNode } from "@markdoc/markdoc";
+import Markdoc, { type Node, type RenderableTreeNode } from "@markdoc/markdoc";
 import keystaticConfig from "@/keystatic.config";
 import { defaultLocale, type Locale } from "./i18n";
 
@@ -44,13 +44,22 @@ export const getContact = cache((locale: Locale = defaultLocale) =>
   required("contact", readerFor(locale).singletons.contact.read()),
 );
 
+async function renderMarkdoc(name: string, read: () => Promise<{ node: Node }>) {
+  const { node } = await read();
+  const errors = Markdoc.validate(node);
+  if (errors.length) throw new Error(`Invalid ${name} markup: ${errors[0].error.message}`);
+  const tree: RenderableTreeNode = Markdoc.transform(node);
+  return tree;
+}
+
 export const getAbout = cache(async (locale: Locale = defaultLocale) => {
   const about = await required("about", readerFor(locale).singletons.about.read());
-  const { node } = await about.body();
-  const errors = Markdoc.validate(node);
-  if (errors.length) throw new Error(`Invalid biography markup: ${errors[0].error.message}`);
-  const body: RenderableTreeNode = Markdoc.transform(node);
-  return { ...about, body };
+  return { ...about, body: await renderMarkdoc("biography", about.body) };
+});
+
+export const getLiterature = cache(async (locale: Locale = defaultLocale) => {
+  const page = await required("literature", readerFor(locale).singletons.literature.read());
+  return { ...page, body: await renderMarkdoc("literature", page.body) };
 });
 
 export const getArticles = cache(async (locale: Locale = defaultLocale) => {
@@ -67,7 +76,7 @@ export const getVideos = cache(async (locale: Locale = defaultLocale) => {
   const entries = await readerFor(locale).collections.videos.all();
   return entries
     .map(({ slug, entry }) => ({ slug, ...entry }))
-    .filter((video) => video.video || video.externalUrl)
+    .filter((video) => video.video || video.youtubeUrl || video.externalUrl)
     .sort((a, b) => (a.order ?? 10) - (b.order ?? 10) || a.title.localeCompare(b.title));
 });
 

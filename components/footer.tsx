@@ -14,6 +14,7 @@ export async function Footer() {
   const socials = [
     { label: "LinkedIn", href: settings.linkedin },
     { label: "Instagram", href: settings.instagram },
+    { label: "Facebook", href: settings.facebook },
     { label: "Flowers in a Gun", href: settings.archiveUrl },
   ].filter((s): s is { label: string; href: string } => Boolean(s.href));
 

@@ -1,7 +1,7 @@
 import { ContactForm } from "@/components/contact-form";
 import { PageHeader } from "@/components/page-header";
 import { T } from "@/components/text";
-import { getContact, getSettings } from "@/lib/content";
+import { getContact, getRealEstate, getSettings } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { filled } from "@/lib/placeholder";
 
@@ -11,13 +11,15 @@ export async function generateMetadata() {
 }
 
 export default async function ContactPage() {
-  const [settings, page] = await Promise.all([getSettings(), getContact()]);
+  const [settings, page, realEstate] = await Promise.all([getSettings(), getContact(), getRealEstate()]);
   const email = filled(settings.email);
+  const agentEmail = filled(realEstate.agentEmail);
   const phone = filled(settings.phone);
 
   const socials = [
     { label: "LinkedIn", href: settings.linkedin, placeholder: "[LinkedIn URL]" },
     { label: "Instagram", href: settings.instagram, placeholder: "[Instagram URL]" },
+    { label: "Facebook", href: settings.facebook, placeholder: "[Facebook URL]" },
   ];
 
   return (
@@ -38,6 +40,16 @@ export default async function ContactPage() {
               )}
             </p>
           </div>
+          {agentEmail && agentEmail !== email && (
+            <div>
+              <h2 className="eyebrow">Real estate</h2>
+              <p className="mt-4 font-serif text-2xl break-words">
+                <a href={`mailto:${agentEmail}`} className="transition-colors hover:text-olive">
+                  {agentEmail}
+                </a>
+              </p>
+            </div>
+          )}
           <div>
             <h2 className="eyebrow">Phone</h2>
             <p className="mt-4 font-serif text-2xl">

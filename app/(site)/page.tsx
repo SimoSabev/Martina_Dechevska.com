@@ -19,6 +19,13 @@ export default async function HomePage() {
     },
     {
       index: "02",
+      title: home.literatureTitle,
+      text: home.literatureText,
+      href: "/literature",
+      cta: "The books",
+    },
+    {
+      index: "03",
       title: home.realEstateTitle,
       text: home.realEstateText,
       href: "/real-estate",
@@ -44,9 +51,10 @@ export default async function HomePage() {
           <p className="mt-6 max-w-lg leading-relaxed text-stone">
             <T>{home.intro}</T>
           </p>
-          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:gap-12">
-            <ArrowLink href="/journalism">{home.journalismTitle}</ArrowLink>
+          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-x-10">
             <ArrowLink href="/real-estate">{home.realEstateTitle}</ArrowLink>
+            <ArrowLink href="/journalism">{home.journalismTitle}</ArrowLink>
+            <ArrowLink href="/literature">{home.literatureTitle}</ArrowLink>
           </div>
         </div>
 
@@ -75,17 +83,17 @@ export default async function HomePage() {
       {/* Two paths */}
       <section aria-labelledby="paths-heading" className="container-site py-24 md:py-32">
         <h2 id="paths-heading" className="eyebrow">
-          Two disciplines
+          Three disciplines
         </h2>
-        <div className="mt-12 grid border-t border-ink md:grid-cols-2">
+        <div className="mt-12 grid border-t border-ink md:grid-cols-3">
           {paths.map((path, i) => (
             <article
               key={path.href}
-              className={`group relative flex flex-col justify-between gap-16 border-b border-sand py-12 transition-colors duration-500 hover:bg-paper md:min-h-[26rem] md:p-12 ${i === 0 ? "md:border-r" : ""}`}
+              className={`group relative flex flex-col justify-between gap-16 border-b border-sand py-12 transition-colors duration-500 hover:bg-paper md:min-h-[26rem] md:p-10 lg:p-12 ${i < paths.length - 1 ? "md:border-r" : ""}`}
             >
               <div>
                 <span className="font-serif text-lg text-olive italic">{path.index}</span>
-                <h3 className="mt-4 font-serif text-[clamp(2.75rem,5vw,4.5rem)] leading-none">
+                <h3 className="mt-4 font-serif text-[clamp(2.75rem,4.2vw,4rem)] leading-none">
                   {path.title}
                 </h3>
                 <p className="mt-6 max-w-md leading-relaxed text-stone">
