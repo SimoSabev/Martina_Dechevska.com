@@ -118,7 +118,7 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] Photographer credit for the two courtyard photos (red cardigan, denim jacket), if one should be shown
 - [ ] Zillow reviews to publish: paste the text and reviewer names (Zillow could not be fetched from the build environment)
 - [ ] Titles for the YouTube videos `QLyCdtdveBg` (Journalism) and `NZWQxdlFTpQ` (Real Estate)
-- [ ] Cover of S@MOT@, and a purchase link if one should be shown
+- [ ] Higher-resolution cover of S@MOT@: the current one is Ciela's 186 px thumbnail and looks soft. Ciela lists the publisher as BG Kniga, so the book note no longer says "independently published" — confirm.
 - [ ] Book videos (premiere, "Часът на Милен Цветков" 05.03.2015, promo) and the remaining bTV and ZoomIn.TV reports Martina chose (Drew Barrymore/Madeline Stuart, Keira Knightley, Jeremy Scott, Goodfellas reunion, all bTV recordings). These files are over the 10 MB the Drive connector can download. Recommended: upload them to Martina's YouTube channel and paste each link into Keystatic (Video reports → "YouTube link", or Literature → Videos).
 - [ ] Contact form choice; recommended: direct delivery via a free form service, because a `mailto:` form loses visitors who have no email app set up
 - [ ] Domain registrar access, and a GitHub account for Martina

@@ -7,8 +7,10 @@ books:
   - title: S@MOT@
     year: '2015'
     note: >-
-      Debut novel, in Bulgarian. Independently published, in print and as an
+      Debut novel, in Bulgarian. Published by BG Kniga, in print and as an
       e-book.
+    url: https://www.ciela.com/satmotat.html
+    cover: /images/literature/samota-cover.jpg
   - title: '@lone'
     year: English edition
     note: >-
