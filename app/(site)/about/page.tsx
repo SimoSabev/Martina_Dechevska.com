@@ -18,6 +18,10 @@ export async function generateMetadata() {
 
 export default async function AboutPage() {
   const [settings, about] = await Promise.all([getSettings(), getAbout()]);
+  const photos = about.gallery.filter((photo) => photo.image);
+  const galleryGroups = (["tall", "wide"] as const)
+    .map((shape) => ({ shape, photos: photos.filter((photo) => (photo.shape ?? "tall") === shape) }))
+    .filter((group) => group.photos.length > 0);
 
   return (
     <>
@@ -50,25 +54,35 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {about.gallery.length > 0 && (
+      {galleryGroups.length > 0 && (
         <section aria-labelledby="gallery-heading" className="border-t border-sand bg-paper">
           <div className="container-site py-24 md:py-32">
             <h2 id="gallery-heading" className="eyebrow">
               Photos
             </h2>
-            <Stagger as="ul" className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3" stagger={0.18}>
-              {about.gallery
-                .filter((photo) => photo.image)
-                .map((photo, i) => (
-                  <StaggerItem as="li" key={i}>
+            {galleryGroups.map(({ shape, photos }) => (
+              <Stagger
+                key={shape}
+                as="ul"
+                className={`mt-12 grid gap-10 sm:grid-cols-2 ${shape === "tall" ? "lg:grid-cols-3" : ""}`}
+                stagger={0.18}
+              >
+                {photos.map((photo, i) => (
+                  <StaggerItem as="li" key={photo.image}>
                     <figure>
-                      <div className="relative aspect-[2/3] overflow-hidden bg-ink">
+                      <div
+                        className={`relative overflow-hidden bg-ink ${shape === "tall" ? "aspect-[2/3]" : "aspect-[3/2]"}`}
+                      >
                         <ImageReveal delay={i * 0.15}>
                           <Image
                             src={photo.image!}
                             alt={photo.alt || settings.name}
                             fill
-                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            sizes={
+                              shape === "tall"
+                                ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                : "(min-width: 640px) 50vw, 100vw"
+                            }
                             className="object-cover"
                           />
                         </ImageReveal>
@@ -77,7 +91,8 @@ export default async function AboutPage() {
                     </figure>
                   </StaggerItem>
                 ))}
-            </Stagger>
+              </Stagger>
+            ))}
           </div>
         </section>
       )}

@@ -114,7 +114,8 @@ If Martina should not need a GitHub account, Keystatic Cloud (free tier) is the 
 - [ ] NY Fair Housing Notice and Standard Operating Procedures: links or wording from Find Real Estate (placeholder in the footer)
 - [ ] Official Equal Housing Opportunity logo file (replace the glyph in `components/equal-housing.tsx`)
 - [ ] LinkedIn and Instagram URLs
-- [ ] Higher-resolution original of the solo portrait (the current file is 645 px wide) and a second solo photo for About.
+- [ ] Higher-resolution original of the solo portrait (the current file is 645 px wide). The two courtyard photos added to the About gallery (red cardigan, denim jacket) are 1024 px web exports: originals would look sharper, and one could then replace the duplicate tweed-suit portrait at the top of About.
+- [ ] Photographer credit for the two courtyard photos (red cardigan, denim jacket), if one should be shown
 - [ ] Zillow reviews to publish: paste the text and reviewer names (Zillow could not be fetched from the build environment)
 - [ ] Titles for the YouTube videos `QLyCdtdveBg` (Journalism) and `NZWQxdlFTpQ` (Real Estate)
 - [ ] Cover of S@MOT@, and a purchase link if one should be shown

@@ -117,6 +117,15 @@ function localeSchema(locale: Locale) {
             image: imageField("Photo", "about"),
             alt: fields.text({ label: "Photo description (alt text)" }),
             credit: fields.text({ label: "Photo credit", description: "e.g. 'Noam Galai / Getty Images'." }),
+            shape: fields.select({
+              label: "Shape",
+              description: "Tall photos fill a row of three; wide (landscape) photos are shown two per row below them.",
+              options: [
+                { label: "Tall (portrait)", value: "tall" },
+                { label: "Wide (landscape)", value: "wide" },
+              ],
+              defaultValue: "tall",
+            }),
           }),
           { label: "Photo gallery", itemLabel: (props) => props.fields.alt.value || "Photo" },
         ),
