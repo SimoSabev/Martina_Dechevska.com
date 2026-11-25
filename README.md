@@ -58,12 +58,11 @@ Content files live in `content/en/`; uploaded images in `public/images/`.
 
 ## Deploying to Vercel
 
-### 1. Create the project
+### 1. Create the project — done
 
-1. Push this repository to GitHub (already done if you are reading this there).
-2. In Vercel: **Add New → Project → Import** `SimoSabev/Martina_Dechevska.com`. Framework preset: Next.js. No build settings to change.
-3. Environment variable: `NEXT_PUBLIC_SITE_URL=https://martinadechevska.com`.
-4. Deploy. The site works immediately; the editor needs step 2.
+The Vercel project `martina-dechevska-com` (team "simosabev's projects", Hobby) is live at https://martina-dechevska-com.vercel.app.
+The production branch is `master`, which is also the repository's default branch: every push to `master` (including Keystatic edits) deploys to production; other branches get preview URLs.
+`NEXT_PUBLIC_SITE_URL` is not set; the code falls back to `https://martinadechevska.com`, which is correct once the domain is connected.
 
 ### 2. Turn on the online editor (Keystatic GitHub mode)
 
